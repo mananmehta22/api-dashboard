@@ -15,7 +15,7 @@ export default function FeaturedInfo() {
       axios.get(urlUpcoming)
             .then(response => {
                 console.log(response)
-                setRocket(response.data)
+                setRocket(response.data.length)
             })
             .catch(err => {
               console.log(err)
@@ -26,7 +26,7 @@ export default function FeaturedInfo() {
       axios.get(urlPast)
             .then(response => {
                 console.log(response)
-                setRocket1(response.data)
+                setRocket1(response.data.length)
             })
             .catch(err => {
               console.log(err)
@@ -36,8 +36,7 @@ export default function FeaturedInfo() {
     useEffect(() => {
       axios.get(Total)
             .then(response => {
-                console.log(response)
-                setRocket2(response.data)
+                setRocket2(response.data.length)
             })
             .catch(err => {
               console.log(err)
@@ -49,21 +48,21 @@ export default function FeaturedInfo() {
       <div className="featuredItem">
         <span className="featuredTitle"></span>
         <div className="featuredLaunchContainer">
-          <span className="featuredUpcoming">{rocket.length}</span>
+          <span className="featuredUpcoming">{rocket}</span>
         </div>
         <span className="featuredSub">Upcoming</span>
       </div>
       <div className="featuredItem">
         <span className="featuredTitle"></span>
         <div className="featuredLaunchContainer">
-          <span className="featuredUpcoming">{rocket1.length}</span>
+          <span className="featuredUpcoming">{rocket1}</span>
         </div>
         <span className="featuredSub">Past</span>
       </div>
       <div className="featuredItem">
         <span className="featuredTitle"></span>
         <div className="featuredLaunchContainer">
-          <span className="featuredUpcoming">{rocket2.length}</span>
+          <span className="featuredUpcoming">{rocket2}</span>
         </div>
         <span className="featuredSub">Total</span>
       </div>

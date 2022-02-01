@@ -9,7 +9,7 @@ function App() {
       <NavBar />
       <div className="container">
         <SideBar />
-        <Home/>
+        <Home />
       </div>
     </div>
   );

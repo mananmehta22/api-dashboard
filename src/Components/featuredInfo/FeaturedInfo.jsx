@@ -1,68 +1,38 @@
-import React, {useState, useEffect} from "react";
-import axios from "axios";
 import "./featuredInfo.css";
+import { useQuery, gql } from "@apollo/client";
 
 export default function FeaturedInfo() {
-    const urlUpcoming = 'https://api.spacexdata.com/v5/launches/upcoming';
-    const urlPast = 'https://api.spacexdata.com/v5/launches/past';
-    const Total = 'https://api.spacexdata.com/v5/launches';
+  const FETCH_API = gql`
+    query {
+      getUpcoming
+      getPast
+      getAll
+    }
+  `;
+  const { loading, error } = useQuery(FETCH_API);
 
-    const [rocket, setRocket] = useState(null)
-    const [rocket1, setRocket1] = useState(null)
-    const [rocket2, setRocket2] = useState(null)
-
-    useEffect(() => {
-      axios.get(urlUpcoming)
-            .then(response => {
-                console.log(response)
-                setRocket(response.data.length)
-            })
-            .catch(err => {
-              console.log(err)
-            })
-    })
-
-    useEffect(() => {
-      axios.get(urlPast)
-            .then(response => {
-                console.log(response)
-                setRocket1(response.data.length)
-            })
-            .catch(err => {
-              console.log(err)
-            })
-    })
-
-    useEffect(() => {
-      axios.get(Total)
-            .then(response => {
-                setRocket2(response.data.length)
-            })
-            .catch(err => {
-              console.log(err)
-            })
-    })
-    
-    return (
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error :(</p>;
+  return (
     <div className="featured">
       <div className="featuredItem">
         <span className="featuredTitle"></span>
         <div className="featuredLaunchContainer">
-          <span className="featuredUpcoming">{rocket}</span>
+          <span className="featuredUpcoming">{getUpcoming}</span>
         </div>
         <span className="featuredSub">Upcoming</span>
       </div>
       <div className="featuredItem">
         <span className="featuredTitle"></span>
         <div className="featuredLaunchContainer">
-          <span className="featuredUpcoming">{rocket1}</span>
+          <span className="featuredUpcoming">{getPast}</span>
         </div>
         <span className="featuredSub">Past</span>
       </div>
       <div className="featuredItem">
         <span className="featuredTitle"></span>
         <div className="featuredLaunchContainer">
-          <span className="featuredUpcoming">{rocket2}</span>
+          <span className="featuredUpcoming">{getAll}</span>
         </div>
         <span className="featuredSub">Total</span>
       </div>

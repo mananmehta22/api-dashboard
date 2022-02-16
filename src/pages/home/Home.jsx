@@ -1,9 +1,9 @@
 import React from "react";
-
-import "./home.css"
+import FeaturedInfo from "../../Components/featuredInfo/FeaturedInfo";
+import "./home.css";
 
 export default function Home() {
   return <div className="home">
-    Home
+    <FeaturedInfo />
   </div>;
 }

@@ -9,7 +9,7 @@ export default function FeaturedInfo() {
       getAll
     }
   `;
-  const { loading, error } = useQuery(FETCH_API);
+  const { loading, error, data } = useQuery(FETCH_API);
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error :(</p>;
@@ -18,21 +18,21 @@ export default function FeaturedInfo() {
       <div className="featuredItem">
         <span className="featuredTitle"></span>
         <div className="featuredLaunchContainer">
-          <span className="featuredUpcoming">{getUpcoming}</span>
+          <span className="featuredUpcoming">{data.getUpcoming}</span>
         </div>
         <span className="featuredSub">Upcoming</span>
       </div>
       <div className="featuredItem">
         <span className="featuredTitle"></span>
         <div className="featuredLaunchContainer">
-          <span className="featuredUpcoming">{getPast}</span>
+          <span className="featuredUpcoming">{data.getPast}</span>
         </div>
         <span className="featuredSub">Past</span>
       </div>
       <div className="featuredItem">
         <span className="featuredTitle"></span>
         <div className="featuredLaunchContainer">
-          <span className="featuredUpcoming">{getAll}</span>
+          <span className="featuredUpcoming">{data.getAll}</span>
         </div>
         <span className="featuredSub">Total</span>
       </div>

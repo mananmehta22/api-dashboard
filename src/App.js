@@ -9,7 +9,7 @@ import {
 } from "@apollo/client";
 
 const client = new ApolloClient({
-  uri: 'https://studio.apollographql.com/sandbox/explorer',
+  uri: 'http://localhost:4000/graphql',
   cache: new InMemoryCache()
 });
 

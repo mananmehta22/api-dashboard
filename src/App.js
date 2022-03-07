@@ -1,29 +1,24 @@
 import NavBar from "./Components/NavBar/NavBar";
 import SideBar from "./Components/SideBar/SideBar";
 import "./App.css";
-import Home from "./pages/home/Home";
-import {
-  ApolloClient,
-  InMemoryCache,
-  ApolloProvider
-} from "@apollo/client";
+import { Home } from "./pages/home/Home.jsx";
+import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 
 const client = new ApolloClient({
-  uri: 'http://localhost:4000/graphql',
-  cache: new InMemoryCache()
+  uri: "http://localhost:4000/graphql",
+  cache: new InMemoryCache(),
 });
-
 
 function App() {
   return (
     <ApolloProvider client={client}>
-    <div>
-      <NavBar />
-      <div className="container">
-        <SideBar />
-        <Home />
+      <div>
+        <NavBar />
+        <div className="container">
+          <SideBar />
+          <Home />
+        </div>
       </div>
-    </div>
     </ApolloProvider>
   );
 }

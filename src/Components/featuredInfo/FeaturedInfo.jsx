@@ -1,14 +1,15 @@
 import "./featuredInfo.css";
 import { useQuery, gql } from "@apollo/client";
 
-export default function FeaturedInfo() {
-  const FETCH_API = gql`
-    query {
-      getUpcoming
-      getPast
-      getAll
-    }
-  `;
+export const FETCH_API = gql`
+  query {
+    getUpcoming
+    getPast
+    getAll
+  }
+`;
+
+export function FeaturedInfo() {
   const { loading, error, data } = useQuery(FETCH_API);
 
   if (loading) return <p>Loading...</p>;

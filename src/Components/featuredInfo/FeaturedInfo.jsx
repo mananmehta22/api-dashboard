@@ -11,9 +11,8 @@ export const FETCH_API = gql`
 
 export function FeaturedInfo() {
   const { loading, error, data } = useQuery(FETCH_API);
-
-  if (loading) return <p>Loading...</p>;
   if (error) return <p>Error :(</p>;
+  if (loading) return <p>Loading...</p>;
   return (
     <div className="featured">
       <div className="featuredItem">

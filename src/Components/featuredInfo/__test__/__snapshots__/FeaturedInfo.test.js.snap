@@ -1,0 +1,71 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`render data 1`] = `
+<div
+  className="featured"
+>
+  <div
+    className="featuredItem"
+  >
+    <span
+      className="featuredTitle"
+    />
+    <div
+      className="featuredLaunchContainer"
+    >
+      <span
+        className="featuredUpcoming"
+      >
+        2
+      </span>
+    </div>
+    <span
+      className="featuredSub"
+    >
+      Upcoming
+    </span>
+  </div>
+  <div
+    className="featuredItem"
+  >
+    <span
+      className="featuredTitle"
+    />
+    <div
+      className="featuredLaunchContainer"
+    >
+      <span
+        className="featuredUpcoming"
+      >
+        109
+      </span>
+    </div>
+    <span
+      className="featuredSub"
+    >
+      Past
+    </span>
+  </div>
+  <div
+    className="featuredItem"
+  >
+    <span
+      className="featuredTitle"
+    />
+    <div
+      className="featuredLaunchContainer"
+    >
+      <span
+        className="featuredUpcoming"
+      >
+        111
+      </span>
+    </div>
+    <span
+      className="featuredSub"
+    >
+      Total
+    </span>
+  </div>
+</div>
+`;

@@ -3,9 +3,10 @@ import { MockedProvider } from "@apollo/react-testing";
 import { FeaturedInfo, FETCH_API } from "../FeaturedInfo";
 import Adapter from "enzyme-adapter-react-16";
 import { configure } from "enzyme";
-import { cleanup } from "@testing-library/react";
+import { cleanup, waitFor } from "@testing-library/react";
 import "@testing-library/jest-dom/extend-expect";
-import TestRenderer from "react-test-renderer";
+import TestRenderer, { act } from "react-test-renderer";
+import { wait } from "@testing-library/user-event/dist/utils";
 
 configure({ adapter: new Adapter() });
 
@@ -25,17 +26,21 @@ it("render data", async () => {
     },
   ];
 
-  const component = TestRenderer.create(
-    <MockedProvider addTypename={false} mocks={mockData}>
-      <FeaturedInfo />
-    </MockedProvider>
-  );
-  
-  await new Promise((resolve) => setTimeout(resolve, 1000));
+  let component;
+  act(() => {
+    component = TestRenderer.create(
+      <MockedProvider addTypename={false} mocks={mockData}>
+        <FeaturedInfo />
+      </MockedProvider>
+    );
+  });
 
+  await act(wait);
 
   const tree = component.toJSON();
-  expect(tree).toMatchSnapshot();
+  await waitFor(() => {
+    expect(tree).toMatchSnapshot();
+  });
 });
 
 it("should show UI error", async () => {
@@ -43,16 +48,20 @@ it("should show UI error", async () => {
     request: { query: FETCH_API },
     error: new Error("Error :("),
   };
-  const component = TestRenderer.create(
-    <MockedProvider addTypename={false} mocks={[mockData]}>
-      <FeaturedInfo />
-    </MockedProvider>
-  );
-
-  await new Promise((resolve) => setTimeout(resolve, 2000));
+  let component;
+  act(() => {
+    component = TestRenderer.create(
+      <MockedProvider addTypename={false} mocks={[mockData]}>
+        <FeaturedInfo />
+      </MockedProvider>
+    );
+  });
+  await act(wait);
 
   const tree = component.toJSON();
-  expect(tree.children).toContain("Error :(");
+  await waitFor(() => {
+    expect(tree.children).toContain("Error :(");
+  });
 });
 
 it("loading state", async () => {
@@ -68,14 +77,14 @@ it("loading state", async () => {
       },
     },
   ];
+
   const component = TestRenderer.create(
     <MockedProvider addTypename={false} mocks={mockData}>
       <FeaturedInfo />
     </MockedProvider>
   );
 
-  
   await new Promise((resolve) => setTimeout(resolve, 0));
   const p = component.toJSON();
-  expect(p.children).toContain('Loading...');
+  expect(p.children).toContain("Loading...");
 });
